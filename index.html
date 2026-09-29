@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoQuest — Mundo em Exploração</title>
+<style>
+:root{--paper:#f2ead8;--ink:#17221f;--green:#214d3b;--green2:#2e6b50;--gold:#c89b3c;--line:#cdbf9f;--muted:#667067;--red:#9d4b3f}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#e7ddc8;color:var(--ink);min-height:100vh;background-image:radial-gradient(#8b806b18 1px,transparent 1px);background-size:18px 18px}.topbar{height:78px;background:var(--green);color:#f5efdf;border-bottom:4px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 4%;position:sticky;top:0;z-index:5;box-shadow:0 3px 0 #173729}.brand{display:flex;gap:10px;align-items:center}.brand>span{font-size:30px;filter:grayscale(.2)}.brand b{display:block;letter-spacing:3px;font-size:19px}.brand small{color:#d8cfae;font-size:11px;letter-spacing:1px}.stats{display:flex;gap:12px}.stats div{min-width:66px;text-align:center;border-left:1px solid #ffffff30}.stats b{display:block;font-size:16px}.stats small{color:#d8cfae;font-size:9px;text-transform:uppercase}.screen{display:none;max-width:1250px;margin:auto;padding:35px 4% 100px}.screen.active{display:block}.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:24px;align-items:center;margin-bottom:35px}.eyebrow{color:var(--gold);font-weight:800;font-size:11px;letter-spacing:2px}.hero h1{font-size:clamp(38px,5vw,65px);line-height:.98;margin:10px 0;font-weight:700}.hero h1 em{color:var(--green2);font-style:normal}.hero p{color:#536058;max-width:650px;font-size:17px;line-height:1.55}.mission-card,.panel{background:var(--paper);border:2px solid var(--line);border-radius:5px;padding:22px;box-shadow:5px 6px 0 #b6a88966}.mission-card span{font-size:11px;color:var(--green2);font-weight:800}.mission-card strong{display:block;font-size:24px;margin:8px 0}.mission-card small{color:var(--muted)}.progress{height:9px;background:#d4c8ae;border-radius:2px;margin-top:15px;overflow:hidden}.progress i{display:block;height:100%;background:var(--green2);width:0%;transition:.4s}.world-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px;border-bottom:2px solid var(--green);padding-bottom:8px}.world-title h2{margin:0}.world-title span{color:var(--muted);font-size:13px}.regions{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.region{background:#f1e8d5;border:2px solid var(--line);border-radius:4px;padding:20px;position:relative;box-shadow:3px 4px 0 #b6a88955}.region.locked{opacity:.52;filter:saturate(.5)}.region h3{margin:5px 0;color:var(--green);font-size:21px}.region p{color:#687169;font-size:13px;margin:0 0 16px;line-height:1.4}.region-header{display:flex;justify-content:space-between}.region-icon{font-size:34px}.badge{font-size:9px;padding:5px 8px;border:1px solid var(--line);border-radius:2px;background:#e5dac2;color:var(--green);font-weight:bold}.points{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.point{background:#e7ddc8;border:1px solid #c2b394;color:#26352e;padding:10px;border-radius:3px;text-align:left;cursor:pointer;min-height:57px;font-family:inherit;font-weight:600}.point:hover:not(:disabled){border-color:var(--green2);background:#dce5d9;transform:translateY(-1px)}.point.done{background:#d9e4d8;border-color:#7e9e87;color:#2d5b44}.point:disabled{cursor:not-allowed}.nav{position:fixed;bottom:0;left:0;right:0;height:70px;background:#173729f5;border-top:3px solid var(--gold);display:flex;justify-content:center;gap:8px;z-index:10}.nav-btn{border:0;background:transparent;color:#cfc7aa;padding:8px 22px;cursor:pointer;font-family:inherit;font-size:18px}.nav-btn span{display:block;font-size:11px}.nav-btn.active{color:#f1d78e}.modal{position:fixed;inset:0;background:#142019c9;display:grid;place-items:center;z-index:20;padding:20px}.hidden{display:none}.modal-card{max-width:720px;width:100%;background:var(--paper);border:3px solid var(--green);border-radius:4px;padding:28px;max-height:90vh;overflow:auto;box-shadow:10px 12px 0 #08150e66}.modal-card h2{margin-top:0;color:var(--green)}.question{font-size:20px;line-height:1.55}.answers{display:grid;gap:10px;margin:20px 0}.answer{background:#e6dcc7;border:1px solid #bcae91;color:#1d2a23;padding:14px;border-radius:3px;text-align:left;cursor:pointer;font-family:inherit;font-size:15px;line-height:1.4}.answer:hover{border-color:var(--green2);background:#dce5d9}.answer.correct{background:#d5e5d4;border-color:#4e7e59}.answer.wrong{background:#ead5d0;border-color:#a55a4e}.feedback{padding:14px;border-radius:3px;background:#e2d7bd;color:#334038;margin-bottom:16px;line-height:1.5}.close{float:right;border:0;background:var(--green);color:white;border-radius:2px;padding:8px 12px;cursor:pointer}.profile-grid{display:grid;grid-template-columns:180px 1fr 1fr;gap:20px;margin:25px 0}.big-level{background:#e5dac3;border:1px solid var(--line);padding:20px;text-align:center}.big-level span{font-size:40px;display:block}.big-level b{font-size:45px;display:block;color:var(--green)}.big-level small{color:#687169}.metric{background:#e5dac3;border:1px solid var(--line);padding:15px;margin-bottom:10px}.metric b{display:block;font-size:22px;color:var(--green)}.metric span{color:#687169;font-size:12px}.achievements{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.achievement{padding:15px;background:#e5dac3;border:1px solid var(--line)}.achievement.locked{opacity:.4}.mission-list{display:grid;gap:14px}.mission-item{background:#e5dac3;padding:18px;border:1px solid var(--line)}.mission-item h3{margin:0 0 5px;color:var(--green)}.mission-item p{color:#5d675f}.mission-reward{color:#8c6922;font-weight:700}.toast{position:fixed;right:20px;top:95px;background:#214d3b;color:#f7efd9;border:2px solid var(--gold);padding:14px 18px;border-radius:3px;z-index:30;animation:fade 3s forwards}@keyframes fade{0%,75%{opacity:1}100%{opacity:0}}@media(max-width:800px){.hero{grid-template-columns:1fr}.regions{grid-template-columns:1fr}.stats{gap:5px}.stats div{min-width:42px}.profile-grid{grid-template-columns:1fr 1fr}.big-level{grid-column:1/-1}.achievements{grid-template-columns:1fr 1fr}.topbar{padding:0 3%}.brand small{display:none}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span>🌎</span><div><b>GEOQUEST</b><small>Mundo em Exploração</small></div></div>
+    <div class="stats">
+      <div>⭐ <b id="level">1</b><small>Nível</small></div>
+      <div>⚡ <b id="xp">0</b><small>XP</small></div>
+      <div>🪙 <b id="coins">100</b><small>GeoCoins</small></div>
+      <div>✓ <b id="completed">0/64</b><small>Pontos</small></div>
+    </div>
+  </header>
+
+  <main>
+    <section id="screen-map" class="screen active">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">1º ANO • ENSINO MÉDIO</span>
+          <h1>Explore o mundo.<br><em>Entenda o espaço.</em></h1>
+          <p>Viaje por regiões, resolva desafios de Geografia e desbloqueie novos territórios.</p>
+        </div>
+        <div class="mission-card">
+          <span>🎯 MISSÃO ATUAL</span>
+          <strong id="missionName">Cartógrafo</strong>
+          <small id="missionProgress">0/4 desafios</small>
+          <div class="progress"><i id="missionBar"></i></div>
+        </div>
+      </div>
+
+      <div class="world">
+        <div class="world-title"><h2>Mapa de exploração</h2><span id="regionCount">1 região disponível</span></div>
+        <div id="regions" class="regions"></div>
+      </div>
+    </section>
+
+    <section id="screen-profile" class="screen">
+      <div class="panel">
+        <h2>👤 Perfil do Explorador</h2>
+        <div class="profile-grid">
+          <div class="big-level"><span>🌎</span><b id="profileLevel">1</b><small>NÍVEL</small></div>
+          <div><div class="metric"><b id="profileXP">0</b><span>XP total</span></div><div class="metric"><b id="profileCoins">100</b><span>GeoCoins</span></div></div>
+          <div><div class="metric"><b id="profilePoints">0/64</b><span>Pontos concluídos</span></div><div class="metric"><b id="profileMissions">0/5</b><span>Missões concluídas</span></div></div>
+        </div>
+        <h3>🏆 Conquistas</h3><div id="achievements" class="achievements"></div>
+      </div>
+    </section>
+
+    <section id="screen-missions" class="screen">
+      <div class="panel"><h2>🎯 Missões</h2><div id="missions" class="mission-list"></div></div>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <button class="nav-btn active" data-screen="map">🗺️<span>Mapa</span></button>
+    <button class="nav-btn" data-screen="missions">🎯<span>Missões</span></button>
+    <button class="nav-btn" data-screen="profile">👤<span>Perfil</span></button>
+    <button class="nav-btn" id="resetBtn">↻<span>Reiniciar</span></button>
+  </nav>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card" id="modalContent"></div>
+</div>
+<script>
+const regionsData=[
+{id:"sul",name:"América do Sul",icon:"🌎",unlock:1,desc:"Cartografia, relevo, clima, população e economia.",points:[
+["coordinates","Coordenadas geográficas","cartografia"],["scale","Escalas cartográficas","cartografia"],["projections","Projeções cartográficas","cartografia"],["relief","Relevo sul-americano","fisica"],["rivers","Bacias hidrográficas","fisica"],["biomes","Biomas brasileiros","fisica"],["climate","Climas do Brasil","clima"],["urban","Urbanização brasileira","populacao"],["migration","Migrações","populacao"],["agriculture","Agricultura","economia"],["industry","Industrialização","economia"],["inequality","Desigualdade socioespacial","sociedade"]]},
+{id:"central",name:"América do Norte e Central",icon:"🌎",unlock:3,desc:"Clima, fronteiras, migração, indústria e recursos.",points:[["formation","Formação territorial","territorio"],["climates","Climas","clima"],["hurricanes","Furacões","clima"],["lakes","Grandes Lagos","fisica"],["urban2","Urbanização","populacao"],["industry2","Industrialização","economia"],["borders","Fronteiras","territorio"],["migration2","Migração","populacao"],["farming2","Agricultura","economia"],["resources2","Recursos naturais","ambiental"]]},
+{id:"africa",name:"África",icon:"🌍",unlock:5,desc:"Climas, população, recursos, território e desenvolvimento.",points:[["climate_af","Diversidade climática","clima"],["desert","Desertos","fisica"],["nile","Rio Nilo","fisica"],["population_af","População","populacao"],["urban_af","Urbanização","populacao"],["minerals","Recursos minerais","economia"],["farming_af","Agricultura","economia"],["colonial","Colonização e território","territorio"],["conflicts","Conflitos territoriais","territorio"],["development","Desenvolvimento socioeconômico","sociedade"]]},
+{id:"europe",name:"Europa",icon:"🇪🇺",unlock:7,desc:"Regionalização, indústria, população, energia e transportes.",points:[["regional","Regionalização","territorio"],["climate_eu","Climas europeus","clima"],["relief_eu","Relevo","fisica"],["industry_eu","Industrialização","economia"],["eu","União Europeia","economia"],["migration_eu","Migração","populacao"],["aging","População envelhecida","populacao"],["urban_eu","Urbanização","populacao"],["energy_eu","Energia","energia"],["transport_eu","Redes de transporte","territorio"]]},
+{id:"asia",name:"Ásia",icon:"🌏",unlock:9,desc:"Himalaias, monções, população, indústria e megacidades.",points:[["himalaya","Himalaias","fisica"],["monsoon","Monções","clima"],["population_as","População","populacao"],["china","China","economia"],["india","Índia","economia"],["japan","Japão","economia"],["industry_as","Industrialização","economia"],["farming_as","Agricultura","economia"],["resources_as","Recursos naturais","ambiental"],["megacities","Megacidades","populacao"]]},
+{id:"oceania",name:"Oceania",icon:"🌊",unlock:11,desc:"Austrália, clima, desertificação, população e recursos.",points:[["australia","Austrália","territorio"],["climate_oc","Climas","clima"],["desertification","Desertificação","ambiental"],["population_oc","População","populacao"],["urban_oc","Urbanização","populacao"],["resources_oc","Recursos naturais","ambiental"]]},
+{id:"polar",name:"Regiões polares",icon:"❄️",unlock:13,desc:"Clima polar, gelo, oceanos e pesquisa científica.",points:[["arctic","Ártico","clima"],["antarctic","Antártica","clima"],["polar_climate","Clima polar","clima"],["ice","Gelo e oceanos","ambiental"],["environment","Mudanças ambientais","ambiental"],["science","Pesquisa científica","sociedade"]]}
+];
+
+const qBank={
+cartografia:[
+["Um mapa apresenta escala 1:500.000. Duas cidades aparecem separadas por 4 cm. Qual é a distância real aproximada entre elas?","2 quilômetros","20 quilômetros","200 quilômetros","400 quilômetros",2,"Na escala 1:500.000, cada centímetro representa 5 km. Logo, 4 cm correspondem a 20 km."],
+["Duas projeções cartográficas apresentam diferentes níveis de distorção. Em uma delas, as áreas são representadas com maior fidelidade; em outra, os ângulos são preservados com maior precisão. O que isso indica?","Cada mapa elimina toda distorção espacial","Cada projeção prioriza determinadas propriedades espaciais","Toda projeção apresenta a mesma finalidade cartográfica","A escala determina sozinha o tipo de projeção",2,"As projeções são escolhas técnicas que preservam melhor algumas propriedades em detrimento de outras."],
+["Um ponto está localizado a 15° S e 47° W. Qual informação pode ser determinada diretamente a partir dessas coordenadas?","A altitude aproximada do ponto","A posição do ponto na superfície terrestre","A temperatura média anual do local","A densidade populacional da área",2,"Latitude e longitude permitem localizar matematicamente um ponto na superfície terrestre."]
+],
+fisica:[
+["Duas cidades estão praticamente na mesma latitude, mas uma está em área montanhosa e outra em uma planície costeira. Qual fator ajuda a explicar uma possível diferença de temperatura?","A variação da longitude entre as cidades","A diferença de altitude entre as cidades","A diferença de escala entre os mapas","A posição das cidades nos fusos horários",2,"A altitude interfere na temperatura atmosférica e pode produzir diferenças mesmo entre áreas de latitude semelhante."],
+["Uma bacia hidrográfica deve ser entendida como uma unidade espacial definida principalmente pela:","Área ocupada apenas pelo rio principal","Área drenada por uma rede fluvial e seus afluentes","Região localizada exclusivamente junto à foz","Superfície onde não existem divisores de água",2,"A bacia compreende a área drenada por um sistema de cursos d'água, delimitada pelos divisores de água."]
+],
+clima:[
+["Uma cidade apresenta forte concentração das chuvas em determinados meses, acompanhando uma mudança sazonal na circulação dos ventos. Qual fenômeno pode explicar esse padrão em partes da Ásia?","A circulação das monções sazonais","A formação diária de marés oceânicas","A ocorrência permanente de correntes frias","A influência exclusiva da altitude regional",1,"As monções estão associadas a mudanças sazonais na circulação atmosférica e na distribuição das chuvas."],
+["Duas cidades apresentam latitudes semelhantes, mas uma está próxima do oceano e outra está no interior continental. Qual fator pode produzir diferenças importantes na amplitude térmica?","A diferença entre maritimidade e continentalidade","A diferença entre escalas dos mapas utilizados","A diferença entre fusos horários locais","A diferença entre suas coordenadas longitudinais",1,"A proximidade do oceano tende a moderar as temperaturas, enquanto áreas continentais podem apresentar maior amplitude térmica."]
+],
+populacao:[
+["Uma cidade cresce rapidamente, mas a expansão da infraestrutura de transporte, saneamento e habitação não acompanha o mesmo ritmo. Qual processo ajuda a interpretar esse cenário?","A urbanização associada a desigualdades socioespaciais","A expansão de áreas agrícolas sobre zonas rurais","A alteração natural da estrutura geológica urbana","A redução da circulação de pessoas entre cidades",1,"O crescimento urbano desigual pode produzir diferenças no acesso à infraestrutura e aos serviços."],
+["Uma pessoa deixa sua região de origem e se desloca para outra em busca de trabalho e melhores condições de vida. Esse movimento corresponde principalmente a:","Um processo de migração populacional","Uma mudança de regionalização política","Um processo de expansão da fronteira agrícola","Uma alteração na estrutura etária local",1,"Migração é o deslocamento de pessoas entre diferentes espaços, podendo ocorrer por fatores econômicos, sociais ou ambientais."]
+],
+economia:[
+["Uma cadeia produtiva conecta produção agrícola, transporte, indústria, distribuição e consumo. O que essa organização revela sobre o espaço geográfico?","As atividades econômicas funcionam de forma independente","Os lugares estão articulados por redes e fluxos","A produção industrial determina toda organização territorial","Os recursos naturais deixam de influenciar a economia",2,"As cadeias produtivas articulam diferentes lugares por meio de fluxos de mercadorias, pessoas, capitais e informações."],
+["Uma indústria escolhe instalar-se próxima a uma grande rodovia para reduzir custos e facilitar a circulação de mercadorias. O exemplo demonstra a importância da:","Localização e infraestrutura de transporte","Latitude e distribuição das zonas climáticas","Vegetação e formação dos biomas regionais","Longitude e organização dos fusos horários",1,"A localização e a infraestrutura influenciam diretamente os custos e a eficiência dos fluxos econômicos."]
+],
+territorio:[
+["Quando um Estado exerce poder político e controle sobre determinada porção do espaço, qual conceito geográfico descreve melhor essa relação?","Território e relações de poder espacial","Paisagem e percepção das formas naturais","Clima e dinâmica da circulação atmosférica","Bioma e distribuição da vegetação",1,"Território está relacionado ao espaço apropriado e controlado por relações de poder."],
+["Uma fronteira política separa dois Estados, mas continua sendo atravessada diariamente por pessoas, mercadorias e informações. O que essa situação evidencia?","Fronteiras eliminam completamente os fluxos","Territórios podem permanecer conectados por redes","Estados deixam de exercer controle sobre seus territórios","As fronteiras deixam de possuir qualquer função política",2,"Fronteiras são limites políticos, mas não impedem necessariamente fluxos econômicos, sociais e culturais."]
+],
+ambiental:[
+["Uma sociedade retira determinado recurso natural em ritmo superior à sua capacidade de renovação. Qual problema ambiental está sendo indicado?","A utilização dos recursos dentro de limites sustentáveis","A pressão sobre a capacidade de regeneração ambiental","A formação natural de uma nova região geográfica","A estabilização completa das condições ecológicas",2,"Quando a retirada supera a capacidade de regeneração, a disponibilidade futura do recurso pode ser comprometida."],
+["A substituição de uma cobertura vegetal por áreas agrícolas pode modificar o escoamento superficial, a infiltração e a conservação do solo. Esse exemplo representa:","A influência das atividades humanas nos processos naturais","A influência exclusiva dos movimentos tectônicos","A alteração de propriedades cartográficas dos mapas","A consequência direta da mudança dos fusos horários",1,"Mudanças no uso da terra podem alterar processos hidrológicos, erosivos e ecológicos."]
+],
+sociedade:[
+["Ao comparar bairros de uma mesma cidade, um geógrafo encontra diferenças no acesso a transporte, saneamento, saúde e renda. Essa análise evidencia principalmente:","A distribuição espacial das desigualdades sociais","A variação regional das condições climáticas","A influência dos movimentos tectônicos urbanos","A distribuição natural das formações vegetais",1,"As desigualdades sociais também se manifestam espacialmente, produzindo diferentes condições de vida no território."],
+["Uma área urbana possui intensa atividade econômica, mas grande parte da população vive distante dos empregos e enfrenta longos deslocamentos. Qual conceito ajuda a analisar essa situação?","Segregação e organização socioespacial","Deriva continental e dinâmica tectônica","Regionalização climática e latitude","Projeção cartográfica e deformação espacial",1,"A organização desigual do espaço urbano pode separar áreas residenciais, empregos e serviços."]
+],
+energia:[
+["Um país amplia sua matriz energética utilizando diferentes fontes para reduzir sua dependência de uma única alternativa. Qual efeito estratégico pode resultar dessa decisão?","Maior diversificação e redução da dependência energética","Eliminação completa dos impactos ambientais existentes","Desaparecimento da influência territorial sobre a produção","Redução automática do consumo total de energia",1,"Diversificar a matriz pode diminuir a vulnerabilidade associada à dependência excessiva de uma única fonte."]
+]
+};
+
+const missions=[
+{id:"cartographer",name:"Cartógrafo",desc:"Conclua 4 desafios de Cartografia.",need:4,type:"cartografia",reward:500},
+{id:"climate",name:"Investigador Climático",desc:"Conclua 4 desafios relacionados ao clima.",need:4,type:"clima",reward:700},
+{id:"urban",name:"Geógrafo Urbano",desc:"Conclua 4 desafios de população e urbanização.",need:4,type:"populacao",reward:700},
+{id:"environment",name:"Planeta em Transformação",desc:"Conclua 4 desafios ambientais.",need:4,type:"ambiental",reward:800},
+{id:"global",name:"Explorador Global",desc:"Conclua 20 pontos de qualquer região.",need:20,type:"global",reward:1500}
+];
+
+let state=JSON.parse(localStorage.getItem("geoquest_state")||"null")||{level:1,xp:0,coins:100,completed:[],missions:[],achievements:[]};
+
+function save(){localStorage.setItem("geoquest_state",JSON.stringify(state))}
+function allPoints(){return regionsData.flatMap(r=>r.points.map(p=>({id:p[0],name:p[1],type:p[2],region:r.name})))} 
+function getPoint(id){return allPoints().find(p=>p.id===id)}
+function levelForXP(xp){let lvl=1,need=500;while(xp>=need&&lvl<15){xp-=need;lvl++;need=500+(lvl-1)*250}return lvl}
+function xpNeed(){return 500+(state.level-1)*250}
+function addReward(xp,coins){let old=state.level;state.xp+=xp;state.coins+=coins;state.level=levelForXP(state.xp);if(state.level>old) toast("🎉 Você alcançou o nível "+state.level+"!");save();render()}
+function toast(msg){let e=document.createElement("div");e.className="toast";e.textContent=msg;document.body.appendChild(e);setTimeout(()=>e.remove(),3000)}
+function render(){
+ document.getElementById("level").textContent=state.level;
+ document.getElementById("xp").textContent=state.xp;
+ document.getElementById("coins").textContent=state.coins;
+ document.getElementById("completed").textContent=state.completed.length+"/64";
+ document.getElementById("profileLevel").textContent=state.level;
+ document.getElementById("profileXP").textContent=state.xp;
+ document.getElementById("profileCoins").textContent=state.coins;
+ document.getElementById("profilePoints").textContent=state.completed.length+"/64";
+ document.getElementById("profileMissions").textContent=state.missions.length+"/"+missions.length;
+ renderRegions();renderMissions();renderAchievements();renderMissionHeader();
+}
+function renderRegions(){
+ let box=document.getElementById("regions");box.innerHTML="";
+ let available=0;
+ regionsData.forEach(r=>{
+  let unlocked=state.level>=r.unlock;if(unlocked)available++;
+  let div=document.createElement("div");div.className="region"+(unlocked?"":" locked");
+  let points=r.points.map(p=>{let done=state.completed.includes(p[0]);return `<button class="point ${done?"done":""}" ${(!unlocked||done)?"disabled":""} onclick="openPoint('${p[0]}')">${done?"✓ ":""}${p[1]}</button>`}).join("");
+  div.innerHTML=`<div class="region-header"><div class="region-icon">${r.icon}</div><span class="badge">${unlocked?"DISPONÍVEL":"🔒 NÍVEL "+r.unlock}</span></div><h3>${r.name}</h3><p>${r.desc}</p><div class="points">${points}</div>`;
+  box.appendChild(div);
+ });
+ document.getElementById("regionCount").textContent=available+" regiões disponíveis";
+}
+function questionFor(point){
+ let arr=qBank[point.type]||qBank.sociedade;
+ let idx=Math.abs(hash(point.id))%arr.length;
+ let base=arr[idx];
+ let answers=base.slice(1,5).map((text,i)=>({text,original:i+1}));
+ let shift=Math.abs(hash(point.id+"answer"))%4;
+ answers=answers.slice(shift).concat(answers.slice(0,shift));
+ let correct=answers.findIndex(a=>a.original===base[5])+1;
+ return [base[0],answers[0].text,answers[1].text,answers[2].text,answers[3].text,correct,base[6]];
+}
+function hash(s){let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i)|0;return h}
+function openPoint(id){
+ let p=getPoint(id),q=questionFor(p);
+ let modal=document.getElementById("modal"),c=document.getElementById("modalContent");
+ c.innerHTML=`<button class="close" onclick="closeModal()">✕</button><span class="eyebrow">${p.region.toUpperCase()} • ${p.type.toUpperCase()}</span><h2>🔎 ${p.name}</h2><p class="question">${q[0]}</p><div class="answers">${q.slice(1,5).map((a,i)=>`<button class="answer" onclick="answer('${id}',${i+1})">${String.fromCharCode(65+i)}) ${a}</button>`).join("")}</div><div id="feedback"></div>`;
+ modal.classList.remove("hidden");
+}
+function answer(id,n){
+ let p=getPoint(id),q=questionFor(p),buttons=[...document.querySelectorAll(".answer")];
+ buttons.forEach(b=>b.disabled=true);
+ let correct=q[5];
+ if(n===correct){
+   buttons[n-1].classList.add("correct");
+   document.getElementById("feedback").innerHTML=`<div class="feedback">✅ <b>Correto!</b><br>${q[6]}<br><br><b>+150 XP • +30 GeoCoins</b></div><button class="answer" onclick="finishPoint('${id}')">Concluir ponto</button>`;
+ }else{
+   buttons[n-1].classList.add("wrong");
+   buttons[correct-1].classList.add("correct");
+   document.getElementById("feedback").innerHTML=`<div class="feedback">❌ <b>Resposta incorreta.</b><br>${q[6]}</div><button class="answer" onclick="retry('${id}')">Tentar novamente</button>`;
+ }
+}
+function retry(id){openPoint(id)}
+function finishPoint(id){
+ if(state.completed.includes(id))return;
+ state.completed.push(id);addReward(150,30);checkMissions();closeModal();toast("✓ Ponto concluído! +150 XP e +30 moedas");render();
+}
+function checkMissions(){
+ missions.forEach(m=>{
+  if(state.missions.includes(m.id))return;
+  let count=m.type==="global"?state.completed.length:state.completed.map(id=>getPoint(id)).filter(Boolean).filter(p=>p.type===m.type).length;
+  if(count>=m.need){state.missions.push(m.id);state.coins+=m.reward;toast("🏆 Missão concluída: "+m.name+"!");}
+ });
+ save();
+}
+function missionCount(m){
+ return m.type==="global"?state.completed.length:state.completed.map(id=>getPoint(id)).filter(Boolean).filter(p=>p.type===m.type).length;
+}
+function renderMissionHeader(){
+ let m=missions.find(x=>!state.missions.includes(x.id))||missions[missions.length-1],n=Math.min(missionCount(m),m.need);
+ document.getElementById("missionName").textContent=m.name;
+ document.getElementById("missionProgress").textContent=n+"/"+m.need+" desafios";
+ document.getElementById("missionBar").style.width=(n/m.need*100)+"%";
+}
+function renderMissions(){
+ document.getElementById("missions").innerHTML=missions.map(m=>{let n=Math.min(missionCount(m),m.need),done=state.missions.includes(m.id);return `<div class="mission-item"><h3>${done?"🏆":"🎯"} ${m.name}</h3><p>${m.desc}</p><div class="progress"><i style="width:${n/m.need*100}%"></i></div><p><b>${n}/${m.need}</b> • <span class="mission-reward">Recompensa: ${m.reward} moedas</span></p></div>`}).join("");
+}
+const achievements=[
+["first","🗺️ Primeiro Mapa","Conclua seu primeiro ponto",()=>state.completed.length>=1],
+["five","🧭 Explorador","Conclua 5 pontos",()=>state.completed.length>=5],
+["ten","📊 Analista","Conclua 10 pontos",()=>state.completed.length>=10],
+["twenty","🌎 Viajante","Conclua 20 pontos",()=>state.completed.length>=20],
+["region","🌍 Mundo Aberto","Alcance o nível 9",()=>state.level>=9],
+["master","🏆 Geógrafo","Conclua todos os 64 pontos",()=>state.completed.length>=64]
+];
+function renderAchievements(){document.getElementById("achievements").innerHTML=achievements.map(a=>`<div class="achievement ${a[3]()?"":"locked"}"><b>${a[1]}</b><p>${a[2]}</p></div>`).join("")}
+function closeModal(){document.getElementById("modal").classList.add("hidden")}
+document.querySelectorAll(".nav-btn[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById("screen-"+b.dataset.screen).classList.add("active")});
+document.getElementById("resetBtn").onclick=()=>{if(confirm("Apagar todo o progresso e começar novamente?")){localStorage.removeItem("geoquest_state");location.reload()}};
+render();
+
+</script>
+</body>
+</html>
